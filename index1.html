@@ -10,6 +10,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: 100vh;
 }
 
 img {
@@ -27,27 +28,34 @@ h1 {
 }
 
 .container {
-  width: 40%;
-  min-width: 250px;
+  width: 60%;
+  min-width: 350px;
   background-color: #888;
   border: 2px solid white;
   border-radius: 15px;
   padding: 20px;
   margin: 10px 0;
   box-shadow: 0 0 10px white;
-  position: relative; /* Для абсолютного позиционирования элементов внутри */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.container button {
+.controls {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.controls button {
   background: none;
   border: none;
   cursor: pointer;
   font-size: 1.5em;
-  position: absolute;
-  top: 10px;
-  left: 10px;
+  margin-right: 10px;
 }
-
 
 .track-info {
   position: absolute;
@@ -57,11 +65,11 @@ h1 {
 }
 
 .track-progress {
-  width: 100%;
+  width: calc(100% - 40px);
   height: 5px;
   background-color: #ccc;
   border-radius: 5px;
-  margin-top: 10px;
+  margin: 10px 0;
 }
 
 .progress-bar {
@@ -75,32 +83,44 @@ h1 {
   margin-top: 10px;
 }
 
-a{
+a {
   text-decoration: none;
   color: white;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 2em;
+  z-index: 1;
 }
+
 </style>
 </head>
 <body>
-<a href="index.html"><</a>
+<a href="index.html">&lt;</a>
 <img src="https://i.pinimg.com/originals/51/0a/a4/510aa4cebb7bccc7c283cca10f3b6601.gif" alt="Ваше изображение">
 <h1>Music Player</h1>
 
 <div class="container">
-  <button id="play-pause-1">&#9658;</button> <span class="track-info" id="track-name-1">Трек 1</span>
-  <audio id="audio-1" src="track1.mp3"></audio>
-  <div class="track-progress">
-    <div class="progress-bar" id="progress-bar-1"></div>
+  <div class="controls">
+    <button id="play-pause-1">&#9658;</button>
+    <div class="track-progress">
+      <div class="progress-bar" id="progress-bar-1"></div>
+    </div>
   </div>
+  <span class="track-info" id="track-name-1">Трек 1</span>
+  <audio id="audio-1" src="track1.mp3"></audio>
   <div class="time" id="time-1">0:00 / 0:00</div>
 </div>
 
 <div class="container">
-  <button id="play-pause-2">&#9658;</button> <span class="track-info" id="track-name-2">Трек 2</span>
-  <audio id="audio-2" src="track2.mp3"></audio>
-  <div class="track-progress">
-    <div class="progress-bar" id="progress-bar-2"></div>
+  <div class="controls">
+    <button id="play-pause-2">&#9658;</button>
+    <div class="track-progress">
+      <div class="progress-bar" id="progress-bar-2"></div>
+    </div>
   </div>
+  <span class="track-info" id="track-name-2">Трек 2</span>
+  <audio id="audio-2" src="track2.mp3"></audio>
   <div class="time" id="time-2">0:00 / 0:00</div>
 </div>
 
@@ -114,7 +134,7 @@ a{
   const audio2 = document.getElementById('audio-2');
   const playPause2 = document.getElementById('play-pause-2');
   const progressBar2 = document.getElementById('progress-bar-2');
-      const time2 = document.getElementById('time-2');
+  const time2 = document.getElementById('time-2');
   const trackName2 = document.getElementById('track-name-2');
 
 
