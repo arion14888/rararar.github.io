@@ -1,139 +1,96 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Music Player</title>
-<style>
-body {
-  font-family: sans-serif;
-  margin: 0;
-  transition: background-color 0.3s ease; /* Smooth transition for theme change */
-}
-
-.dark-mode {
-  background-color: #333;
-  color: #eee;
-}
-
-.light-mode {
-  background-color: #fff;
-  color: #333;
-}
-
-#theme-toggle {
-  position: fixed;
-  top: 10px;
-  right: 10px;
-}
-
-h1 {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.track-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 20px auto;
-  padding: 20px;
-  border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  max-width: 800px; /* Prevents overflow on smaller screens */
-}
-
-.track-image {
-  width: 150px;
-  height: 150px;
-  border-radius: 10px;
-  background-size: cover;
-  background-position: center;
-  filter: blur(5px); /* Blurred effect */
-  position: relative; /* For play/pause button positioning */
-}
-
-.play-pause {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 30px;
-  cursor: pointer;
-}
-
-.track-info {
-  flex-grow: 1;
-  margin-left: 20px;
-}
-
-#player-controls {
-  display: none; /* Hidden by default */
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background-color: #f0f0f0;
-  padding: 10px;
-  border-top: 1px solid #ccc;
-}
-
-#player-controls.active {
-  display: block;
-}
-
-#track-progress {
-  width: 100%;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARIONCHECK</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: sans-serif;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        #container {
+            width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+            border: 2px solid white;
+            border-radius: 5px;
+        }
+        #preview {
+            width: 400px;
+            height: 200px;
+            margin: 10px auto;
+            border: 1px solid #ccc;
+        }
+        .option-group {
+            margin-bottom: 10px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"], input[type="color"] {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+        input[type="checkbox"] {
+            margin-right: 5px;
+        }
+    </style>
 </head>
-<body class="light-mode">
-  <label for="theme-toggle">
-    <input type="checkbox" id="theme-toggle"> Dark Mode
-  </label>
+<body>
+    <h1>ARIONCHECK</h1>
+    <div id="container">
+        <div>
+            <label for="title">Заголовок:</label>
+            <input type="text" id="title" value="Черта">
+        </div>
+        <div>
+            <label for="text">Текст:</label>
+            <textarea id="text">Текст здесь</textarea>
+        </div>
+        <div class="option-group">
+            <label for="backgroundColor">Цвет фона:</label>
+            <input type="color" id="backgroundColor" value="#000000">
+            <input type="checkbox" id="transparentBackground">
+            <label for="transparentBackground">Прозрачный фон</label>
+        </div>
+        <div class="option-group">
+            <label>Тема:</label>
+            <button onclick="changeTheme('dark')">Темная</button>
+            <button onclick="changeTheme('light')">Светлая</button>
+        </div>
 
-  <h1>My Music Player</h1>
-
-  <div class="track-container">
-    <div class="track-image" style="background-image: url('placeholder.jpg');">
-      <div class="play-pause" id="play-pause-button">&gt;</div>
+        <button id="download">Скачать PNG</button>
+        <canvas id="preview"></canvas>
     </div>
-    <div class="track-info">
-      <h3>Track Title</h3>
-    </div>
-  </div>
 
-  <div id="player-controls">
-    <div class="track-image" style="width: 50px; height: 50px; background-image: url('placeholder.jpg'); filter: blur(3px); margin-right: 10px;"></div>
-    <div>Track Title</div>
-    <input type="range" id="track-progress" min="0" max="100" value="0">
-  </div>
+    <script>
+        const canvas = document.getElementById('preview');
+        const ctx = canvas.getContext('2d');
 
-  <script>
-    const themeToggle = document.getElementById('theme-toggle');
-    const body = document.body;
-    const playPauseButton = document.getElementById('play-pause-button');
-    const playerControls = document.getElementById('player-controls');
+        function changeTheme(theme) {
+            //  This will need to change the color of elements and canvas content.
+            //  Add code here to handle the theme change in your styles.
+        }
 
-    themeToggle.addEventListener('change', () => {
-      body.classList.toggle('dark-mode');
-      body.classList.toggle('light-mode');
-    });
-
-    let isPlaying = false;
-    playPauseButton.addEventListener('click', () => {
-      isPlaying = !isPlaying;
-      playPauseButton.textContent = isPlaying ? '||' : '>';
-      playerControls.classList.add('active'); // Show controls on play
-    });
-
-    // Add event listener to track-progress (simulated progress)
-      const trackProgress = document.getElementById('track-progress');
-      trackProgress.addEventListener('input', () => {
-          //Simulate progress update (Replace with actual audio update)
-          console.log('Progress:', trackProgress.value);
-      });
+        document.getElementById('download').addEventListener('click', () => {
+          // This is where you would make the AJAX call to your server-side script
+          // to generate and download the PNG.  The server-side script would use
+          // the values from the input fields.  This is placeholder code only.
+          alert("Download functionality requires server-side processing!");
+        });
 
 
-  </script>
+    </script>
 </body>
 </html>
+
