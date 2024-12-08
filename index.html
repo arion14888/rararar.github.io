@@ -3,59 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Генератор Картинки из Кода</title>
+    <title>Тема сайта</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f4f4f4;
-            padding: 20px;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s, color 0.3s;
         }
-        #output {
-            border: 1px solid #ccc;
-            margin-top: 20px;
+        body.light {
+            background-color: white;
+            color: black;
+        }
+        body.dark {
+            background-color: black;
+            color: white;
+        }
+        .container {
+            background-color: grey;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px;
+        }
+        .toggle {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            cursor: pointer;
+        }
+        .monospace {
+            font-family: 'Courier New', monospace;
+        }
+        .copy-button {
+            cursor: pointer;
+            padding: 5px 10px;
+            margin-left: 10px;
         }
     </style>
 </head>
-<body>
-    <h1>Создание Картинки из Кода</h1>
-    <textarea id="codeInput" rows="10" cols="30" placeholder="Введите ваш код..."></textarea><br>
-    <button id="generateBtn">Создать Картинку</button>
-    <canvas id="output" width="400" height="300"></canvas><br>
-    <button id="downloadBtn">Скачать Картинку</button>
+<body class="dark">
+    <div class="toggle" onclick="toggleTheme()">Переключить тему</div>
+
+    <div class="container">
+        <h1>Ваш заголовок</h1>
+        <p>Шрифты: обычный текст.</p>
+    </div>
+  
+    <div class="container" onclick="location.href='index1.html'" style="cursor:pointer;">
+        𝙼𝚘𝚗𝚘𝚜𝚙𝚊𝚌𝚎
+    </div>
 
     <script>
-        const codeInput = document.getElementById('codeInput');
-        const generateBtn = document.getElementById('generateBtn');
-        const outputCanvas = document.getElementById('output');
-        const ctx = outputCanvas.getContext('2d');
-        const downloadBtn = document.getElementById('downloadBtn');
-
-        generateBtn.addEventListener('click', () => {
-            const code = codeInput.value;
-            ctx.clearRect(0, 0, outputCanvas.width, outputCanvas.height); // Очистка холста
-            ctx.fillStyle = '#fff'; // Цвет фона
-            ctx.fillRect(0, 0, outputCanvas.width, outputCanvas.height);
-
-            // Настройка текста
-            ctx.fillStyle = '#000'; // Цвет текста
-            ctx.font = '16px monospace';
-            ctx.textAlign = 'left';
-            ctx.textBaseline = 'top';
-
-            // Разделение кода на строки и рисование на холсте
-            const lines = code.split('\n');
-            lines.forEach((line, index) => {
-                ctx.fillText(line, 10, index * 20 + 10);
-            });
-        });
-
-        downloadBtn.addEventListener('click', () => {
-            const link = document.createElement('a');
-            link.download = 'code_image.png';
-            link.href = outputCanvas.toDataURL();
-            link.click();
-        });
+        function toggleTheme() {
+            document.body.classList.toggle('light');
+            document.body.classList.toggle('dark');
+        }
     </script>
 </body>
 </html>
