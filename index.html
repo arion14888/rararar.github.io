@@ -8,15 +8,15 @@
         body {
             background-color: black;
             color: white; /* Цвет текста */
-            font-family: sans-serif; /* Выбор шрифта */
+            font-family: sans-serif;
         }
 
-        .rounded-image {
-            width: 300px; /* Ширина изображения */
-            height: auto; /* Автоматическая высота */
-            border-radius: 20px; /* Радиус закругления углов */
-            margin: 20px auto; /* Отступы */
-            display: block; /* Центрирование изображения */
+        img {
+            width: 100%;
+            max-width: 800px; /* Ограничиваем максимальную ширину изображения */
+            border-radius: 20px; /* Закругленные углы изображения */
+            display: block; /* Убираем лишние отступы */
+            margin: 20px auto; /* Центрируем изображение */
         }
 
         h1 {
@@ -25,38 +25,48 @@
         }
 
         .container {
-            width: 300px;
-            height: 100px;
-            background-color: #f0f0f0; /* Светло-серый цвет */
-            border: 10px solid #ddd; /* Толстая серая обводка */
-            box-shadow: 0 0 20px yellow; /* Желтое свечение */
+            width: 45%; /* Ширина контейнеров */
+            background-color: #888; /* Серый цвет */
+            border: 2px solid #555; /* Средняя обводка */
+            border-radius: 15px;
+            padding: 20px;
             margin: 10px auto;
             text-align: center;
-            line-height: 100px; /* Вертикальное выравнивание текста */
+            box-shadow: 0 0 10px yellow; /* Желтое свечение */
+            transition: box-shadow 0.3s ease; /* Плавный переход свечения */
             cursor: pointer; /* Курсор в виде руки */
-            transition: transform 0.3s; /* Эффект плавного перехода */
         }
 
         .container:hover {
-            transform: scale(1.05); /* Увеличение при наведении */
+            box-shadow: 0 0 20px yellow; /* Увеличенное свечение при наведении */
+        }
+        
+        .container-light {
+            background-color: #d3d3d3; /* Светло-серый цвет */
         }
 
-        .container.bold {
-          font-weight: bold;
+        .container a {
+            text-decoration: none; /* Убираем подчеркивание у ссылок */
+            color: white; /* Цвет текста ссылок */
+            font-weight: bold;
         }
+
+        .container-light a {
+            color: black; /* Цвет текста ссылок в светло-сером контейнере */
+        }
+
     </style>
 </head>
 <body>
-    <img src="https://i.pinimg.com/originals/51/0a/a4/510aa4cebb7bccc7c283cca10f3b6601.gif" alt="Описание изображения" class="rounded-image">  <!-- Замените your_image.jpg на путь к вашему изображению -->
+    <img src="https://i.pinimg.com/originals/51/0a/a4/510aa4cebb7bccc7c283cca10f3b6601.gif" alt="Ваше изображение"> <!-- Замените your_image.jpg на путь к вашему изображению -->
+    <h1>Мой заголовок</h1>
 
-    <h1>Заголовок</h1>
+    <div class="container" onclick="window.location.href='index1.html'">
+        <a href="index1.html"><b>Контейнер 1</b></a>
+    </div>
 
-    <a href="index1.html">
-        <div class="container bold">Контейнер 1</div>
-    </a>
-
-    <a href="index2.html">
-        <div class="container">Контейнер 2</div>
-    </a>
+    <div class="container container-light" onclick="window.location.href='index2.html'">
+        <a href="index2.html"><b>Контейнер 2</b></a>
+    </div>
 </body>
 </html>
