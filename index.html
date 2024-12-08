@@ -1,62 +1,64 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Тема сайта</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            transition: background-color 0.3s, color 0.3s;
-        }
-        body.light {
-            background-color: white;
-            color: black;
-        }
-        body.dark {
-            background-color: black;
-            color: white;
-        }
-        .container {
-            background-color: grey;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px;
-        }
-        .toggle {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            cursor: pointer;
-        }
-        .monospace {
-            font-family: 'Courier New', monospace;
-        }
-        .copy-button {
-            cursor: pointer;
-            padding: 5px 10px;
-            margin-left: 10px;
-        }
-    </style>
+<title>Main Page</title>
+<style>
+body {
+  font-family: sans-serif;
+  transition: background-color 0.3s, color 0.3s; /* Плавный переход */
+}
+.dark-theme {
+  background-color: #111;
+  color: #fff;
+}
+.dark-theme .container {
+  background-color: #333;
+  color: #fff;
+  border: 2px solid #fff;
+}
+.light-theme {
+  background-color: #fff;
+  color: #000;
+}
+.light-theme .container {
+  background-color: #ddd;
+  color: #000;
+  border: 2px solid #000;
+}
+.container {
+  width: 80%;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Тень */
+}
+.monospace {
+  font-family: monospace;
+}
+</style>
 </head>
-<body class="dark">
-    <div class="toggle" onclick="toggleTheme()">Переключить тему</div>
+<body class="dark-theme">
+  <label class="switch">
+    <input type="checkbox" id="themeSwitch">
+    <span class="slider round"></span>
+  </label>
 
-    <div class="container">
-        <h1>Ваш заголовок</h1>
-        <p>Шрифты: обычный текст.</p>
+  <div class="container">
+    <h1>Заголовок</h1>
+    <div class="container monospace" onclick="location.href='index1.html'">
+      <p>𝙼𝚘𝚗𝚘𝚜𝚙𝚊𝚌𝚎</p>
     </div>
-  
-    <div class="container" onclick="location.href='index1.html'" style="cursor:pointer;">
-        𝙼𝚘𝚗𝚘𝚜𝚙𝚊𝚌𝚎
-    </div>
+  </div>
 
-    <script>
-        function toggleTheme() {
-            document.body.classList.toggle('light');
-            document.body.classList.toggle('dark');
-        }
-    </script>
+  <script>
+    const themeSwitch = document.getElementById('themeSwitch');
+    const body = document.body;
+
+    themeSwitch.addEventListener('change', () => {
+      body.classList.toggle('dark-theme');
+      body.classList.toggle('light-theme');
+    });
+  </script>
 </body>
 </html>
