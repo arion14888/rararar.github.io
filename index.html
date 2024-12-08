@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой сайт</title>
+    <style>
+        body {
+            background-color: black;
+            color: white; /* Цвет текста */
+            font-family: sans-serif; /* Выбор шрифта */
+        }
+
+        .rounded-image {
+            width: 300px; /* Ширина изображения */
+            height: auto; /* Автоматическая высота */
+            border-radius: 20px; /* Радиус закругления углов */
+            margin: 20px auto; /* Отступы */
+            display: block; /* Центрирование изображения */
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .container {
+            width: 300px;
+            height: 100px;
+            background-color: #f0f0f0; /* Светло-серый цвет */
+            border: 10px solid #ddd; /* Толстая серая обводка */
+            box-shadow: 0 0 20px yellow; /* Желтое свечение */
+            margin: 10px auto;
+            text-align: center;
+            line-height: 100px; /* Вертикальное выравнивание текста */
+            cursor: pointer; /* Курсор в виде руки */
+            transition: transform 0.3s; /* Эффект плавного перехода */
+        }
+
+        .container:hover {
+            transform: scale(1.05); /* Увеличение при наведении */
+        }
+
+        .container.bold {
+          font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <img src="https://i.pinimg.com/originals/51/0a/a4/510aa4cebb7bccc7c283cca10f3b6601.gif" alt="Описание изображения" class="rounded-image">  <!-- Замените your_image.jpg на путь к вашему изображению -->
+
+    <h1>Заголовок</h1>
+
+    <a href="index1.html">
+        <div class="container bold">Контейнер 1</div>
+    </a>
+
+    <a href="index2.html">
+        <div class="container">Контейнер 2</div>
+    </a>
+</body>
+</html>
