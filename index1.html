@@ -89,8 +89,20 @@ a {
   position: absolute;
   top: 10px;
   left: 10px;
-  font-size: 2em;
+  font-size: 1.5em; /* Уменьшен размер текста */
   z-index: 1;
+  display: flex;
+  align-items: center;
+}
+
+a::before {
+  content: "";
+  display: inline-block;
+  width: 15px; /* Увеличен размер квадрата */
+  height: 15px; /* Увеличен размер квадрата */
+  background-color: white;
+  margin-right: 5px;
+  border-radius: 2px;
 }
 
 </style>
@@ -119,6 +131,7 @@ a {
       <div class="progress-bar" id="progress-bar-2"></div>
     </div>
   </div>
+
   <span class="track-info" id="track-name-2">Трек 2</span>
   <audio id="audio-2" src="track2.mp3"></audio>
   <div class="time" id="time-2">0:00 / 0:00</div>
@@ -137,13 +150,11 @@ a {
   const time2 = document.getElementById('time-2');
   const trackName2 = document.getElementById('track-name-2');
 
-
   function formatTime(seconds) {
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = Math.floor(seconds % 60);
     return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
   }
-
 
   function updateProgressBar(audio, progressBar, timeDisplay) {
     const duration = audio.duration;
@@ -171,19 +182,16 @@ a {
     });
 
     audio.addEventListener('loadedmetadata', () => {
-        timeDisplay.textContent = `0:00 / ${formatTime(audio.duration)}`;
-        trackName.textContent = audio.src.split('/').pop();
+      timeDisplay.textContent = `0:00 / ${formatTime(audio.duration)}`;
+      trackName.textContent = audio.src.split('/').pop();
     });
   }
-
 
   handleAudio(audio1, playPause1, progressBar1, time1, trackName1);
   handleAudio(audio2, playPause2, progressBar2, time2, trackName2);
 
   audio1.addEventListener('play', () => audio2.pause());
   audio2.addEventListener('play', () => audio1.pause());
-
-
 </script>
 </body>
 </html>
