@@ -7,16 +7,16 @@
     <style>
         body {
             background-color: black;
-            color: white; /* Цвет текста */
+            color: white;
             font-family: sans-serif;
         }
 
         img {
             width: 100%;
-            max-width: 800px; /* Ограничиваем максимальную ширину изображения */
-            border-radius: 20px; /* Закругленные углы изображения */
-            display: block; /* Убираем лишние отступы */
-            margin: 20px auto; /* Центрируем изображение */
+            max-width: 800px;
+            border-radius: 20px;
+            display: block;
+            margin: 20px auto;
         }
 
         h1 {
@@ -26,46 +26,38 @@
 
         .container {
             width: 45%; /* Ширина контейнеров */
+            min-width: 300px; /* Минимальная ширина, чтобы избежать сжатия на маленьких экранах */
             background-color: #888; /* Серый цвет */
-            border: 2px solid #555; /* Средняя обводка */
+            border: 2px solid #555;
             border-radius: 15px;
             padding: 20px;
             margin: 10px auto;
             text-align: center;
-            box-shadow: 0 0 10px yellow; /* Желтое свечение */
-            transition: box-shadow 0.3s ease; /* Плавный переход свечения */
-            cursor: pointer; /* Курсор в виде руки */
+            box-shadow: 0 0 10px yellow;
+            transition: box-shadow 0.3s ease;
+            cursor: pointer;
         }
 
         .container:hover {
-            box-shadow: 0 0 20px yellow; /* Увеличенное свечение при наведении */
-        }
-        
-        .container-light {
-            background-color: #d3d3d3; /* Светло-серый цвет */
+            box-shadow: 0 0 20px yellow;
         }
 
         .container a {
-            text-decoration: none; /* Убираем подчеркивание у ссылок */
-            color: white; /* Цвет текста ссылок */
+            text-decoration: none;
+            color: white;
             font-weight: bold;
         }
-
-        .container-light a {
-            color: black; /* Цвет текста ссылок в светло-сером контейнере */
-        }
-
     </style>
 </head>
 <body>
-    <img src="https://i.pinimg.com/originals/51/0a/a4/510aa4cebb7bccc7c283cca10f3b6601.gif" alt="Ваше изображение"> <!-- Замените your_image.jpg на путь к вашему изображению -->
+    <img src="https://i.pinimg.com/originals/51/0a/a4/510aa4cebb7bccc7c283cca10f3b6601.gif" alt="Ваше изображение">
     <h1>Мой заголовок</h1>
 
     <div class="container" onclick="window.location.href='index1.html'">
         <a href="index1.html"><b>Контейнер 1</b></a>
     </div>
 
-    <div class="container container-light" onclick="window.location.href='index2.html'">
+    <div class="container" onclick="window.location.href='index2.html'">
         <a href="index2.html"><b>Контейнер 2</b></a>
     </div>
 </body>
