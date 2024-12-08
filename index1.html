@@ -3,7 +3,7 @@
 <head>
 <title>Second Page</title>
 <style>
-/* ... (такой же CSS, как в index.html) ... */
+/* ... (Скопируйте сюда весь CSS из index.html) ... */
 #copyButton {
     background-color: #4CAF50;
     border: none;
@@ -37,27 +37,27 @@
   </div>
 
   <script>
-      const themeSwitch = document.getElementById('themeSwitch');
-      const body = document.body;
+    const themeSwitch = document.getElementById('themeSwitch');
+    const body = document.body;
 
-      themeSwitch.addEventListener('change', () => {
-          body.classList.toggle('dark-theme');
-          body.classList.toggle('light-theme');
-      });
+    themeSwitch.addEventListener('change', () => {
+      body.classList.toggle('dark-theme');
+      body.classList.toggle('light-theme');
+    });
 
-      const inputArea = document.getElementById('inputArea');
-      const outputArea = document.getElementById('outputArea');
-      const copyButton = document.getElementById('copyButton');
+    const inputArea = document.getElementById('inputArea');
+    const outputArea = document.getElementById('outputArea');
+    const copyButton = document.getElementById('copyButton');
 
-      inputArea.addEventListener('input', () => {
-          outputArea.value = inputArea.value;
-      });
+    inputArea.addEventListener('input', () => {
+      outputArea.value = inputArea.value;
+    });
 
-      copyButton.addEventListener('click', () => {
-          outputArea.select();
-          document.execCommand('copy');
-          //Можно добавить уведомление о копировании
-      });
+    copyButton.addEventListener('click', () => {
+      outputArea.select();
+      document.execCommand('copy');
+      // Можно добавить уведомление о копировании
+    });
   </script>
 </body>
 </html>
