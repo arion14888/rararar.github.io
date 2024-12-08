@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой сайт</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <img src="your_image.jpg" alt="Заголовок изображения" class="header-image">
+        <h1>Заголовок</h1>
+    </header>
+
+    <main>
+        <div class="container" onclick="location.href='index1.html'">
+            <p><strong>Контейнер 1: Жирный текст</strong></p>
+        </div>
+        <div class="container" onclick="location.href='index2.html'">
+            <p>Контейнер 2</p>
+        </div>
+    </main>
+
+</body>
+</html>
+body {
+    background-color: black;
+    color: white;
+    font-family: sans-serif;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Выравнивание по центру */
+}
+
+.header-image {
+    width: 100%;
+    max-width: 800px; /* Максимальная ширина изображения */
+    border-radius: 20px; /* Закругленные углы */
+    margin-bottom: 20px;
+}
+
+header {
+    text-align: center;
+    padding: 20px 0;
+}
+
+h1 {
+    font-size: 2em;
+}
+
+.container {
+    background-color: #f2f2f2; /* Светло-серый цвет */
+    border: 5px solid #f2f2f2; /* Толстая белая обводка */
+    border-radius: 10px;
+    box-shadow: 0 0 10px yellow; /* Желтое свечение */
+    padding: 20px;
+    margin: 20px;
+    width: 80%; /* Ширина контейнеров */
+    max-width: 600px; /* Максимальная ширина */
+    cursor: pointer; /* Указывает на то, что это кликабельный элемент */
+    transition: transform 0.2s ease; /* Плавная анимация при наведении */
+}
+
+.container:hover {
+    transform: scale(1.02); /* Небольшое увеличение при наведении */
+}
+
+/* Адаптивный дизайн (опционально, для лучшей адаптации под разные размеры экрана) */
+@media (max-width: 600px) {
+    .container {
+        width: 90%;
+    }
+}
