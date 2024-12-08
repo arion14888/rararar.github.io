@@ -12,60 +12,96 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-        }
-
-        img {
-            width: 80%;
-            max-width: 800px;
-            border-radius: 20px;
-            box-shadow: 0 0 20px white;
-            margin: 20px 0;
-        }
-
-        h1 {
-            font-size: 3em;
-            text-shadow: 0 0 10px white;
-            margin-bottom: 30px;
+            min-height: 100vh;
+            margin: 0;
         }
 
         .container {
-            width: 40%;
-            min-width: 250px;
-            background-color: #888;
-            border: 2px solid white; /* Белая обводка */
-            border-radius: 15px;
+            background-color: #222; /* Slightly darker gray background for containers */
+            border: 2px solid white;
+            border-radius: 10px;
             padding: 20px;
-            margin: 10px 0;
-            text-align: center;
-            box-shadow: 0 0 10px white;
+            margin: 20px;
+            width: 300px; /* Adjust width as needed */
+            box-shadow: 0 0 10px rgba(128, 0, 128, 0.5); /* Purple shadow */
+            position: relative; /* For absolute positioning of the line */
+        }
+
+        .container h3 {
+            margin-bottom: 10px;
+        }
+
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background-color: white;
+            transform: translateY(-50%);
+        }
+
+
+        img {
+            width: 150px; /* Adjust width as needed */
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .bottom-svg {
+            display: flex;
+            justify-content: space-around;
+            width: 80%;
+            margin-top: 40px;
+        }
+
+        .bottom-svg svg {
+            width: 50px;
+            height: 50px;
             cursor: pointer;
-            transition: transform 0.2s ease;
         }
 
-        .container:hover {
-            transform: translateY(-5px);
+        .bottom-line {
+            width: 80%;
+            height: 1px;
+            background-color: white;
+            margin-bottom: 20px;
         }
 
-        .container a {
-            text-decoration: none;
+        h1 {
             color: white;
-            font-size: 1.2em;
-            font-weight: bold;
-            display: block;
-            padding: 10px 0;
+            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
-    <img src="https://i.pinimg.com/originals/51/0a/a4/510aa4cebb7bccc7c283cca10f3b6601.gif" alt="Ваше изображение">
     <h1>ARIONCHECK</h1>
+    <img src="https://i.pinimg.com/originals/51/0a/a4/510aa4cebb7bccc7c283cca10f3b6601.gif" alt="ArionCheck Image">
 
-    <div class="container" onclick="window.location.href='index1.html'">
-        <a href="index1.html">Фонк</a>
+
+    <div class="container">
+        <h3>Заголовок 1</h3>
+        <p>Информация 1</p>
+    </div>
+    <div class="container">
+        <h3>Заголовок 2</h3>
+        <p>Информация 2</p>
+    </div>
+    <div class="container">
+        <h3>Заголовок 3</h3>
+        <p>Информация 3</p>
+    </div>
+    <div class="container">
+        <h3>Заголовок 4</h3>
+        <p>Информация 4</p>
     </div>
 
-    <div class="container" onclick="window.location.href='index2.html'">
-        <a href="index2.html">Дота-рэп</a>
+    <div class="bottom-line"></div>
+    <div class="bottom-svg">
+        <a href="index.html"><svg>...</svg></a>  <!-- Замените ... на ваш SVG код -->
+        <a href="index1.html"><svg>...</svg></a> <!-- Замените ... на ваш SVG код -->
+        <a href="index2.html"><svg>...</svg></a> <!-- Замените ... на ваш SVG код -->
     </div>
 </body>
 </html>
