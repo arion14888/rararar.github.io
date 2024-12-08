@@ -3,62 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мой сайт</title>
+    <title>ArionCheck</title>
     <style>
         body {
             background-color: black;
             color: white;
             font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         img {
-            width: 100%;
+            width: 80%;
             max-width: 800px;
             border-radius: 20px;
-            display: block;
-            margin: 20px auto;
+            box-shadow: 0 0 20px white;
+            margin: 20px 0;
         }
 
         h1 {
-            text-align: center;
+            font-size: 3em;
+            text-shadow: 0 0 10px white;
             margin-bottom: 30px;
         }
 
         .container {
-            width: 45%; /* Ширина контейнеров */
-            min-width: 300px; /* Минимальная ширина, чтобы избежать сжатия на маленьких экранах */
-            background-color: #888; /* Серый цвет */
-            border: 2px solid #555;
+            width: 40%;
+            min-width: 250px;
+            background-color: #888;
+            border: 2px solid white; /* Белая обводка */
             border-radius: 15px;
             padding: 20px;
-            margin: 10px auto;
+            margin: 10px 0;
             text-align: center;
-            box-shadow: 0 0 10px yellow;
-            transition: box-shadow 0.3s ease;
+            box-shadow: 0 0 10px white;
             cursor: pointer;
+            transition: transform 0.2s ease;
         }
 
         .container:hover {
-            box-shadow: 0 0 20px yellow;
+            transform: translateY(-5px);
         }
 
         .container a {
             text-decoration: none;
             color: white;
+            font-size: 1.2em;
             font-weight: bold;
+            display: block;
+            padding: 10px 0;
         }
     </style>
 </head>
 <body>
     <img src="https://i.pinimg.com/originals/51/0a/a4/510aa4cebb7bccc7c283cca10f3b6601.gif" alt="Ваше изображение">
-    <h1>Мой заголовок</h1>
+    <h1>ARIONCHECK</h1>
 
     <div class="container" onclick="window.location.href='index1.html'">
-        <a href="index1.html"><b>Контейнер 1</b></a>
+        <a href="index1.html">Фонк</a>
     </div>
 
     <div class="container" onclick="window.location.href='index2.html'">
-        <a href="index2.html"><b>Контейнер 2</b></a>
+        <a href="index2.html">Дота-рэп</a>
     </div>
 </body>
 </html>
