@@ -1,96 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ARIONCHECK</title>
-    <style>
-        body {
-            background-color: black;
-            color: white;
-            font-family: sans-serif;
-        }
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        #container {
-            width: 500px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
-            border: 2px solid white;
-            border-radius: 5px;
-        }
-        #preview {
-            width: 400px;
-            height: 200px;
-            margin: 10px auto;
-            border: 1px solid #ccc;
-        }
-        .option-group {
-            margin-bottom: 10px;
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
-        }
-        input[type="text"], input[type="color"] {
-            width: 100%;
-            padding: 5px;
-            margin-bottom: 10px;
-            box-sizing: border-box;
-        }
-        input[type="checkbox"] {
-            margin-right: 5px;
-        }
-    </style>
+<title>Ray.so Imitation</title>
+<style>
+body {
+  font-family: sans-serif;
+}
+textarea {
+  width: 80%;
+  height: 200px;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+#output {
+  width: 80%;
+  height: 200px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  white-space: pre-wrap; /* Allow line breaks in output */
+}
+</style>
 </head>
 <body>
-    <h1>ARIONCHECK</h1>
-    <div id="container">
-        <div>
-            <label for="title">Заголовок:</label>
-            <input type="text" id="title" value="Черта">
-        </div>
-        <div>
-            <label for="text">Текст:</label>
-            <textarea id="text">Текст здесь</textarea>
-        </div>
-        <div class="option-group">
-            <label for="backgroundColor">Цвет фона:</label>
-            <input type="color" id="backgroundColor" value="#000000">
-            <input type="checkbox" id="transparentBackground">
-            <label for="transparentBackground">Прозрачный фон</label>
-        </div>
-        <div class="option-group">
-            <label>Тема:</label>
-            <button onclick="changeTheme('dark')">Темная</button>
-            <button onclick="changeTheme('light')">Светлая</button>
-        </div>
 
-        <button id="download">Скачать PNG</button>
-        <canvas id="preview"></canvas>
-    </div>
+<h1>Simple Code Editor</h1>
 
-    <script>
-        const canvas = document.getElementById('preview');
-        const ctx = canvas.getContext('2d');
+<textarea id="codeInput" placeholder="Введите ваш код здесь..."></textarea><br><br>
 
-        function changeTheme(theme) {
-            //  This will need to change the color of elements and canvas content.
-            //  Add code here to handle the theme change in your styles.
-        }
+<button onclick="showOutput()">Показать результат</button>
 
-        document.getElementById('download').addEventListener('click', () => {
-          // This is where you would make the AJAX call to your server-side script
-          // to generate and download the PNG.  The server-side script would use
-          // the values from the input fields.  This is placeholder code only.
-          alert("Download functionality requires server-side processing!");
-        });
+<div id="output"></div>
 
+<script>
+function showOutput() {
+  let code = document.getElementById("codeInput").value;
+  document.getElementById("output").innerText = "Результат:\n" + code; //  Только выводит введенный текст.  Без обработки кода.
+}
+</script>
 
-    </script>
 </body>
 </html>
-
