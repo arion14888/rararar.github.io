@@ -1,42 +1,97 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Ray.so Imitation</title>
+<title>ARIONCHECK</title>
 <style>
 body {
+  background-color: black;
+  color: white;
   font-family: sans-serif;
 }
-textarea {
-  width: 80%;
-  height: 200px;
-  padding: 10px;
-  border: 1px solid #ccc;
+#container {
+  width: 500px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #333;
+  border-radius: 10px;
 }
-#output {
-  width: 80%;
-  height: 200px;
-  border: 1px solid #ccc;
-  padding: 10px;
-  white-space: pre-wrap; /* Allow line breaks in output */
+#canvasContainer {
+  width: 400px;
+  height: 300px;
+  margin: 20px auto;
 }
 </style>
 </head>
 <body>
+  <h1>ARIONCHECK</h1>
+  <div id="container">
+    <label for="backgroundColor">Цвет фона:</label>
+    <input type="color" id="backgroundColor" value="#000000"><br><br>
+    <label for="containerColor">Цвет контейнера:</label>
+    <input type="color" id="containerColor" value="rgba(0,0,0,0.5)"><br><br>
+    <label for="textColor">Цвет текста:</label>
+    <input type="color" id="textColor" value="#FFFFFF"><br><br>
+    <label for="title">Заголовок:</label>
+    <input type="text" id="title" value="Заголовок"><br><br>
+    <label for="text">Текст:</label>
+    <textarea id="text" rows="4" cols="50">Текст</textarea><br><br>
+    <button onclick="generatePNG()">Создать PNG</button>
+    <div id="canvasContainer">
+      <canvas id="myCanvas"></canvas>
+    </div>
+    <a id="downloadLink" download="arioncheck.png" style="display:none;"></a>
+  </div>
 
-<h1>Simple Code Editor</h1>
 
-<textarea id="codeInput" placeholder="Введите ваш код здесь..."></textarea><br><br>
+  <script>
+    function generatePNG() {
+      const canvas = document.getElementById('myCanvas');
+      const ctx = canvas.getContext('2d');
+      const backgroundColor = document.getElementById('backgroundColor').value;
+      const containerColor = document.getElementById('containerColor').value;
+      const textColor = document.getElementById('textColor').value;
+      const title = document.getElementById('title').value;
+      const text = document.getElementById('text').value;
 
-<button onclick="showOutput()">Показать результат</button>
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = backgroundColor;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-<div id="output"></div>
 
-<script>
-function showOutput() {
-  let code = document.getElementById("codeInput").value;
-  document.getElementById("output").innerText = "Результат:\n" + code; //  Только выводит введенный текст.  Без обработки кода.
-}
-</script>
+      ctx.fillStyle = containerColor;
+      ctx.strokeStyle = textColor; // обводка того же цвета что и текст
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.roundRect(50, 50, 300, 180, 10); //x,y,width,height,radius
+      ctx.fill();
+      ctx.stroke();
 
+
+      ctx.fillStyle = textColor;
+      ctx.font = '20px sans-serif';
+      ctx.fillText(title, 70, 90);
+      ctx.fillText(text, 70, 120);
+
+      const link = document.getElementById('downloadLink');
+      link.href = canvas.toDataURL('image/png');
+      link.style.display = 'block';
+      link.click();
+      link.style.display = 'none';
+    }
+
+    //Решение проблемы с закругленными углами
+    CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
+      if (w < 2 * r) r = w / 2;
+      if (h < 2 * r) r = h / 2;
+      this.beginPath();
+      this.moveTo(x + r, y);
+      this.arcTo(x + w, y, x + w, y + h, r);
+      this.arcTo(x + w, y + h, x, y + h, r);
+      this.arcTo(x, y + h, x, y, r);
+      this.arcTo(x, y, x + w, y, r);
+      this.closePath();
+      return this;
+    }
+  </script>
 </body>
 </html>
