@@ -1,197 +1,78 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-<title>Music Player</title>
-<style>
-body {
-  background-color: black;
-  color: white;
-  font-family: sans-serif;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
-}
-
-img {
-  width: 80%;
-  max-width: 800px;
-  border-radius: 20px;
-  box-shadow: 0 0 20px white;
-  margin: 20px 0;
-}
-
-h1 {
-  font-size: 3em;
-  text-shadow: 0 0 10px white;
-  margin-bottom: 30px;
-}
-
-.container {
-  width: 60%;
-  min-width: 350px;
-  background-color: #888;
-  border: 2px solid white;
-  border-radius: 15px;
-  padding: 20px;
-  margin: 10px 0;
-  box-shadow: 0 0 10px white;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.controls {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    margin-top: 10px;
-}
-
-.controls button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 1.5em;
-  margin-right: 10px;
-}
-
-.track-info {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 1em;
-}
-
-.track-progress {
-  width: calc(100% - 40px);
-  height: 5px;
-  background-color: #ccc;
-  border-radius: 5px;
-  margin: 10px 0;
-}
-
-.progress-bar {
-  height: 100%;
-  background-color: white;
-  border-radius: 5px;
-}
-
-.time {
-  text-align: center;
-  margin-top: 10px;
-}
-
-a {
-  text-decoration: none;
-  color: white;
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  font-size: 1.5em; /* Уменьшен размер текста */
-  z-index: 1;
-  display: flex;
-  align-items: center;
-}
-
-a::before {
-  content: "";
-  display: inline-block;
-  width: 15px; /* Увеличен размер квадрата */
-  height: 15px; /* Увеличен размер квадрата */
-  background-color: white;
-  margin-right: 5px;
-  border-radius: 2px;
-}
-
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monospace текст</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        body.light {
+            background-color: white;
+            color: black;
+        }
+        body.dark {
+            background-color: black;
+            color: white;
+        }
+        .container {
+            background-color: grey;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px;
+            display: flex;
+            align-items: center;
+        }
+        .toggle {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            cursor: pointer;
+        }
+        .monospace {
+            font-family: 'Courier New', monospace;
+        }
+        .copy-button {
+            cursor: pointer;
+            padding: 5px 10px;
+            margin-left: 10px;
+        }
+    </style>
 </head>
-<body>
-<a href="index.html">&lt;</a>
-<img src="https://i.pinimg.com/originals/51/0a/a4/510aa4cebb7bccc7c283cca10f3b6601.gif" alt="Ваше изображение">
-<h1>Music Player</h1>
-
-<div class="container">
-  <div class="controls">
-    <button id="play-pause-1">&#9658;</button>
-    <div class="track-progress">
-      <div class="progress-bar" id="progress-bar-1"></div>
+<body class="dark">
+    <div class="toggle" onclick="toggleTheme()">Переключить тему</div>
+  
+    <h1 class="monospace">𝙼𝚘𝚗𝚘𝚜𝚙𝚊𝚌𝚎</h1>
+  
+    <div class="container">
+        <textarea placeholder="Введите текст..." id="inputText"></textarea>
     </div>
-  </div>
-  <span class="track-info" id="track-name-1">Трек 1</span>
-  <audio id="audio-1" src="track1.mp3"></audio>
-  <div class="time" id="time-1">0:00 / 0:00</div>
-</div>
-
-<div class="container">
-  <div class="controls">
-    <button id="play-pause-2">&#9658;</button>
-    <div class="track-progress">
-      <div class="progress-bar" id="progress-bar-2"></div>
+    <div class="container">
+        <div id="monospaceResult" class="monospace">Результат в monospace</div>
+        <div class="copy-button" onclick="copyToClipboard()">Скопировать</div>
     </div>
-  </div>
 
-  <span class="track-info" id="track-name-2">Трек 2</span>
-  <audio id="audio-2" src="track2.mp3"></audio>
-  <div class="time" id="time-2">0:00 / 0:00</div>
-</div>
+    <script>
+        const inputText = document.getElementById('inputText');
+        const monospaceResult = document.getElementById('monospaceResult');
 
-<script>
-  const audio1 = document.getElementById('audio-1');
-  const playPause1 = document.getElementById('play-pause-1');
-  const progressBar1 = document.getElementById('progress-bar-1');
-  const time1 = document.getElementById('time-1');
-  const trackName1 = document.getElementById('track-name-1');
+        inputText.addEventListener('input', () => {
+            monospaceResult.textContent = inputText.value;
+        });
 
-  const audio2 = document.getElementById('audio-2');
-  const playPause2 = document.getElementById('play-pause-2');
-  const progressBar2 = document.getElementById('progress-bar-2');
-  const time2 = document.getElementById('time-2');
-  const trackName2 = document.getElementById('track-name-2');
+        function copyToClipboard() {
+            navigator.clipboard.writeText(monospaceResult.textContent).then(() => {
+                alert('Скопировано в буфер обмена!');
+            });
+        }
 
-  function formatTime(seconds) {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = Math.floor(seconds % 60);
-    return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
-  }
-
-  function updateProgressBar(audio, progressBar, timeDisplay) {
-    const duration = audio.duration;
-    const currentTime = audio.currentTime;
-    const percentage = (currentTime / duration) * 100;
-    progressBar.style.width = `${percentage}%`;
-    timeDisplay.textContent = `${formatTime(currentTime)} / ${formatTime(duration)}`;
-  }
-
-  function handleAudio(audio, playPause, progressBar, timeDisplay, trackName) {
-    let isPlaying = false;
-    playPause.addEventListener('click', () => {
-      isPlaying = !isPlaying;
-      if (isPlaying) {
-        audio.play();
-        playPause.textContent = '||';
-      } else {
-        audio.pause();
-        playPause.textContent = '&#9658;';
-      }
-    });
-
-    audio.addEventListener('timeupdate', () => {
-      updateProgressBar(audio, progressBar, timeDisplay);
-    });
-
-    audio.addEventListener('loadedmetadata', () => {
-      timeDisplay.textContent = `0:00 / ${formatTime(audio.duration)}`;
-      trackName.textContent = audio.src.split('/').pop();
-    });
-  }
-
-  handleAudio(audio1, playPause1, progressBar1, time1, trackName1);
-  handleAudio(audio2, playPause2, progressBar2, time2, trackName2);
-
-  audio1.addEventListener('play', () => audio2.pause());
-  audio2.addEventListener('play', () => audio1.pause());
-</script>
+        function toggleTheme() {
+            document.body.classList.toggle('light');
+            document.body.classList.toggle('dark');
+        }
+    </script>
 </body>
 </html>
