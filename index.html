@@ -3,104 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Пример сайта</title>
+    <title>Генератор Картинки из Кода</title>
     <style>
         body {
-            margin: 0;
             font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            background-color: #f0f0f0;
-        }
-        
-        h1 {
-            margin: 20px 0;
-        }
-
-        #backgroundColor {
-            margin: 20px 0;
-        }
-
-        .container {
-            width: 80%;
-            max-width: 1200px;
-            border-radius: 15px;
-            border: 2px solid #fff;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+            text-align: center;
+            background-color: #f4f4f4;
             padding: 20px;
-            background: rgba(255, 255, 255, 0.9);
-            position: relative;
         }
-
-        .line {
-            height: 2px;
-            background: #ccc;
-            margin: 20px 0;
-        }
-
-        .canvas-container {
-            overflow: hidden;
-            width: 100%;
-            max-width: 1000px;
-            height: 500px;
-            position: relative;
+        #output {
+            border: 1px solid #ccc;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <h1>Настройка цветового фона</h1>
-    <input type="color" id="backgroundColor" value="#f0f0f0" />
-    <div class="container">
-        <h2>Заголовок контейнера</h2>
-        <div class="line"></div>
-        <p>Это текст внутри контейнера. Здесь можно разместить любую информацию.</p>
-    </div>
-  
-    <h1>Дополнительный заголовок</h1>
-    <p>Текст под заголовком. Здесь можно добавить дополнительную информацию.</p>
-
-    <div class="canvas-container">
-        <canvas id="canvas" width="3840" height="2160"></canvas>
-    </div>
-  
-    <button id="downloadBtn">Скачать PNG</button>
+    <h1>Создание Картинки из Кода</h1>
+    <textarea id="codeInput" rows="10" cols="30" placeholder="Введите ваш код..."></textarea><br>
+    <button id="generateBtn">Создать Картинку</button>
+    <canvas id="output" width="400" height="300"></canvas><br>
+    <button id="downloadBtn">Скачать Картинку</button>
 
     <script>
-        const backgroundColorPicker = document.getElementById('backgroundColor');
-        const container = document.querySelector('.container');
-        const canvas = document.getElementById('canvas');
-        const ctx = canvas.getContext('2d');
+        const codeInput = document.getElementById('codeInput');
+        const generateBtn = document.getElementById('generateBtn');
+        const outputCanvas = document.getElementById('output');
+        const ctx = outputCanvas.getContext('2d');
+        const downloadBtn = document.getElementById('downloadBtn');
 
-        // Функция для изменения цвета фона
-        backgroundColorPicker.addEventListener('input', (event) => {
-            document.body.style.backgroundColor = event.target.value;
+        generateBtn.addEventListener('click', () => {
+            const code = codeInput.value;
+            ctx.clearRect(0, 0, outputCanvas.width, outputCanvas.height); // Очистка холста
+            ctx.fillStyle = '#fff'; // Цвет фона
+            ctx.fillRect(0, 0, outputCanvas.width, outputCanvas.height);
+
+            // Настройка текста
+            ctx.fillStyle = '#000'; // Цвет текста
+            ctx.font = '16px monospace';
+            ctx.textAlign = 'left';
+            ctx.textBaseline = 'top';
+
+            // Разделение кода на строки и рисование на холсте
+            const lines = code.split('\n');
+            lines.forEach((line, index) => {
+                ctx.fillText(line, 10, index * 20 + 10);
+            });
         });
 
-        // Отрисовка содержимого на канвасе
-        function drawCanvas() {
-            ctx.fillStyle = '#fff';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = '#000';
-            ctx.font = '40px Arial';
-            ctx.fillText('Заголовок контейнера', 100, 100);
-            ctx.fillRect(100, 120, canvas.width - 200, 10);
-            ctx.fillText('Это текст внутри контейнера. Здесь можно разместить любую информацию.', 100, 150);
-        }
-
-        // Обработчик для кнопки скачивания
-        document.getElementById('downloadBtn').addEventListener('click', () => {
-            drawCanvas();
+        downloadBtn.addEventListener('click', () => {
             const link = document.createElement('a');
-            link.download = 'screenshot.png';
-            link.href = canvas.toDataURL('image/png');
+            link.download = 'code_image.png';
+            link.href = outputCanvas.toDataURL();
             link.click();
         });
-
-        // Первоначальная отрисовка
-        drawCanvas();
     </script>
 </body>
 </html>
