@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Музыкальный плеер</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .player {
+            background-color: #888;
+            border: 2px solid #555;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 0 10px yellow;
+            width: 600px; /* Настройте ширину по необходимости */
+            text-align: center;
+        }
+
+        .player audio {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .player button {
+            background-color: #555;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .player button:hover {
+            background-color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="player">
+        <h1>Мой музыкальный плеер</h1>
+        <audio controls>
+            <source src="your_music.mp3" type="audio/mpeg"> <!-- Замените на путь к вашей песне -->
+            Ваш браузер не поддерживает HTML5 audio.
+        </audio>
+
+        <!-- Дополнительные кнопки (например, пауза, остановка) можно добавить здесь -->
+    </div>
+</body>
+</html>
