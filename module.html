@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+           <h1 class="header-title">Module</h1>
+            <div class="menu-icon" onclick="toggleMenu()">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+           <nav class="menu">
+                <ul>
+                    <li><a href="index.html"><strong>Biography</strong></a></li>
+                    <li><a href="module.html"><strong>Module</strong></a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="module-container">
+          
+            <div class="copy-box" onclick="copyText('Text to copy 1', 'Text Copied 1', 'copy-container1', 'popup-text1')">
+              вот
+            </div>
+             <div class="copy-box" onclick="copyText('Text to copy 2', 'Text Copied 2', 'copy-container2', 'popup-text2')">
+                 до
+            </div>
+        </div>
+    </main>
+     <div class="popup-container" id="popup-container1">
+          <div class="popup" >
+             <p class="popup-text" id="popup-text1">Текст скопирован 1</p>
+               <hr>
+              <p>Дополнительный текст 1</p>
+              <hr>
+             <div class="close-button" onclick="closePopup('popup-container1')">X</div>
+          </div>
+      </div>
+      <div class="popup-container" id="popup-container2">
+        <div class="popup" >
+           <p class="popup-text" id="popup-text2">Текст скопирован 2</p>
+              <hr>
+              <p>Дополнительный текст 2</p>
+              <hr>
+            <div class="close-button" onclick="closePopup('popup-container2')">X</div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

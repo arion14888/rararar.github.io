@@ -1,0 +1,238 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    color: white;
+    font-family: monospace; /* Моноширинный шрифт */
+}
+
+header {
+    padding: 20px 0;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 10px;
+}
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid purple;
+    border-radius: 30px;
+}
+
+.header-title {
+    font-size: 2em;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.menu-icon {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.bar {
+    width: 30px;
+    height: 4px;
+    background-color: white;
+    margin: 3px 0;
+}
+.menu {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) translateY(-100%);
+    width: 80%;
+    max-height: 50vh;
+    background-color: #333;
+    border: 2px solid purple;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    overflow: hidden;
+    z-index: 1000;
+    padding: 20px 0;
+    box-sizing: border-box;
+    transition: transform 0.3s ease-in-out, max-height 0.3s ease-in-out;
+}
+
+.menu.active {
+    display: block;
+    transform: translateX(-50%) translateY(0);
+    max-height: 50vh;
+    box-shadow: none; /* Убираем подсветку при открытом меню */
+}
+
+.menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+.menu li {
+    padding: 15px 0;
+}
+.menu a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2em;
+}
+.menu a:hover {
+    text-decoration: underline;
+     box-shadow: none; /* Убираем подсветку при наведении на ссылки меню */
+}
+.menu li:hover {
+     box-shadow: none;
+}
+main {
+    padding: 20px;
+    text-align: center;
+}
+.image-container{
+    margin: 0 auto;
+    width: 400px;
+    padding: 10px 0;
+}
+.image-container img{
+     width: 100%;
+    border: 2px solid purple;
+    border-radius: 20px;
+}
+.info-container{
+   max-width: 800px;
+    margin: 20px auto;
+    padding: 10px 0;
+}
+.content-box {
+    border: 2px solid purple;
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+.content-box h2{
+    margin-top: 0;
+}
+.module-container {
+  display: flex;
+    flex-direction: column;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 10px 0;
+}
+
+.copy-box {
+    border: 2px solid purple;
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    text-align: center;
+}
+.popup-container {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+.popup {
+    background-color: #333;
+    border: 2px solid purple;
+    border-radius: 20px;
+    padding: 20px;
+    position: relative;
+    max-width: 600px;
+    text-align: center;
+}
+.close-button {
+  position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+.close-button:hover{
+    transform: scale(1.2);
+}
+hr {
+    border: 0.5px solid purple;
+     margin: 20px 0;
+}
+.container:hover,
+.header-container:hover,
+.content-box:hover,
+.copy-box:hover,
+.popup:hover,
+.close-button:hover,
+.image-container img:hover,
+.popup-container{
+  box-shadow: 0 0 10px 3px purple; /* Фиолетовая подсветка при ховере */
+}
+/* Медиазапрос для экранов с шириной до 768px (обычные телефоны) */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 5px;
+    }
+    .header-container {
+        flex-direction: column; /* Меню и заголовок в столбец */
+        text-align: center;
+    }
+
+    .header-title {
+        margin: 10px 0; /* Отступы для заголовка */
+    }
+
+    .menu-icon {
+       margin: 10px 0;
+    }
+     .menu {
+        width: 90%; /* Меньшая ширина меню */
+       max-height: 80vh; /* Максимальная высота на телефонах */
+    }
+    .menu ul li {
+        font-size: 0.8em;
+    }
+   
+    .image-container{
+        width: 90%;
+        margin: 10px auto;
+    }
+     .info-container {
+        max-width: 90%;
+        padding: 10px;
+     }
+     .module-container {
+        max-width: 90%;
+      }
+     .copy-box{
+         padding: 10px;
+     }
+    .popup {
+        max-width: 90%; /* Меньшая ширина попапа */
+        padding: 10px;
+    }
+}
+
+/* Дополнительные медиазапросы для маленьких экранов можно добавить */
+@media (max-width: 375px) {
+   
+    .popup {
+      font-size: 0.8em;
+     }
+    .menu ul li a {
+       font-size: 0.8em;
+    }
+    .header-title {
+        font-size: 1.5em;
+    }
+}
